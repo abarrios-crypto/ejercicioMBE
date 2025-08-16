@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Caso Clínico: Ciencia y Precisión</title>
+  <title>Ejercicio: Medicina Basada en Evidencia y Precisión</title>
   <style>
     body {
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -32,31 +32,82 @@
       padding-bottom: 5px;
       margin-top: 25px;
     }
-    p {
-      margin: 12px 0;
-    }
-    .highlight {
-      background: #e3f2fd;
+    .info-group {
+      background: #f0f7ff;
       padding: 15px;
-      border-left: 4px solid #2196f3;
       border-radius: 8px;
-      margin: 15px 0;
+      border: 1px solid #b3d9ff;
+      margin-bottom: 20px;
     }
-    textarea {
+    .info-group label {
+      display: block;
+      margin: 10px 0 5px;
+      font-weight: 600;
+      color: #2c3e50;
+    }
+    .info-group input {
       width: 100%;
       padding: 10px;
       border: 1px solid #ccc;
       border-radius: 6px;
-      resize: vertical;
-      min-height: 80px;
       font-size: 15px;
+    }
+    .question {
+      margin: 20px 0;
+    }
+    .question p {
+      font-weight: 600;
+      margin-bottom: 10px;
+    }
+    .options {
+      list-style: none;
+      padding: 0;
+    }
+    .options li {
       margin: 8px 0;
+    }
+    .options input {
+      margin-right: 8px;
+    }
+    .feedback {
+      margin-top: 15px;
+      padding: 10px;
+      border-radius: 6px;
+      display: none;
+    }
+    .correct {
+      background-color: #d4edda;
+      color: #155724;
+      border: 1px solid #c3e6cb;
+    }
+    .incorrect {
+      background-color: #f8d7da;
+      color: #721c24;
+      border: 1px solid #f5c6c9;
+    }
+    .btn {
+      display: inline-block;
+      padding: 10px 20px;
+      margin: 10px 5px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 16px;
+      font-weight: bold;
+    }
+    .check-btn {
+      background-color: #2980b9;
+      color: white;
+    }
+    .reset-btn {
+      background-color: #e74c3c;
+      color: white;
     }
     .print-btn {
       display: block;
       width: 100%;
       padding: 14px;
-      background-color: #2980b9;
+      background-color: #27ae60;
       color: white;
       border: none;
       border-radius: 8px;
@@ -67,7 +118,7 @@
       box-shadow: 0 2px 6px rgba(0,0,0,0.1);
     }
     .print-btn:hover {
-      background-color: #1f6aad;
+      background-color: #219a52;
     }
     .footer {
       text-align: center;
@@ -76,10 +127,10 @@
       font-size: 13px;
     }
 
-    /* Estilos para impresión */
+    /* Ocultar botones al imprimir */
     @media print {
-      .print-btn {
-        display: none;
+      .btn, .feedback::before, .feedback {
+        display: none !important;
       }
       .footer {
         display: none;
@@ -88,57 +139,81 @@
         box-shadow: none;
         padding: 10px;
       }
-      body {
-        -webkit-print-color-adjust: exact;
-        print-color-adjust: exact;
-      }
     }
   </style>
 </head>
 <body>
   <div class="container" id="print-area">
-    <h1>🔍 Caso Clínico: "El tumor que no respondía"</h1>
-    <p><strong>Contexto real:</strong> Inspirado en casos de oncología de precisión del proyecto The Cancer Genome Atlas (TCGA).</p>
+    <h1>🔍 Ejercicio: Medicina Basada en Evidencia y Precisión</h1>
+
+    <!-- Nombre y grupo -->
+    <div class="info-group">
+      <label for="student-name">Nombre del estudiante</label>
+      <input type="text" id="student-name" placeholder="Escribe tu nombre completo" />
+
+      <label for="student-group">Grupo o equipo</label>
+      <input type="text" id="student-group" placeholder="Ej: Grupo 3B, Equipo Alpha" />
+    </div>
 
     <h2>📌 Caso clínico</h2>
     <p>
-      <strong>Paciente:</strong> María, 42 años, diagnosticada con cáncer de pulmón no microcítico (CPNM).
-    </p>
-    <p>
-      <strong>Tratamiento inicial:</strong> Quimioterapia estándar (cisplatino + pemetrexed).
-    </p>
-    <p>
-      <strong>Resultado:</strong> Progresión del tumor a las 4 semanas. No responde al tratamiento convencional.
+      <strong>Paciente:</strong> Luis, 58 años, diagnosticado con cáncer de pulmón no microcítico (CPNM).<br>
+      <strong>Tratamiento inicial:</strong> Quimioterapia estándar.<br>
+      <strong>Resultado:</strong> Progresión del tumor.<br>
+      <strong>Análisis genómico:</strong> Mutación <strong>EGFR L858R</strong> positiva. PD-L1 negativo.
     </p>
 
-    <p>
-      <strong>Análisis genómico del tumor:</strong>
-    </p>
-    <ul>
-      <li>Mutación en el gen <strong>EGFR L858R</strong> (activadora).</li>
-      <li>Ausencia de fusión <em>ALK</em> o <em>ROS1</em>.</li>
-      <li>Bajo índice de mutación tumoral (TMB bajo).</li>
-      <li><strong>PD-L1 negativo</strong> (inmunoterapia no recomendada).</li>
-    </ul>
-
-    <div class="highlight">
-      <h3>🎯 Tu misión: Decide el siguiente paso</h3>
-      
-      <p><strong>1.</strong> Según la <strong>medicina basada en evidencias</strong>, ¿qué tipo de prueba respalda el uso de inhibidores de EGFR en pacientes con esta mutación?</p>
-      <textarea placeholder="Escribe tu respuesta aquí..."></textarea>
-
-      <p><strong>2.</strong> ¿Por qué la <strong>medicina de precisión</strong> indica que María debería recibir un inhibidor de EGFR (como gefitinib u osimertinib) en lugar de continuar con quimioterapia?</p>
-      <textarea placeholder="Escribe tu respuesta aquí..."></textarea>
-
-      <p><strong>3.</strong> Si no se hubiera hecho el análisis genómico, ¿qué riesgo habría al mantener la quimioterapia?</p>
-      <textarea placeholder="Escribe tu respuesta aquí..."></textarea>
+    <!-- Pregunta 1 -->
+    <div class="question">
+      <p>1. Según la medicina basada en evidencias, ¿cuál es el tratamiento de primera línea recomendado para este paciente?</p>
+      <ul class="options">
+        <li><label><input type="radio" name="q1" value="incorrect"> a) Inmunoterapia con pembrolizumab</label></li>
+        <li><label><input type="radio" name="q1" value="correct"> b) Inhibidor de EGFR (osimertinib)</label></li>
+        <li><label><input type="radio" name="q1" value="incorrect"> c) Radioterapia sola</label></li>
+        <li><label><input type="radio" name="q1" value="incorrect"> d) Cambio a quimioterapia más intensa</label></li>
+      </ul>
+      <div class="feedback" id="feedback1"></div>
     </div>
 
+    <!-- Pregunta 2 -->
+    <div class="question">
+      <p>2. ¿Por qué la medicina de precisión indica este tratamiento específico?</p>
+      <ul class="options">
+        <li><label><input type="radio" name="q2" value="incorrect"> a) Porque todos los cánceres de pulmón responden igual</label></li>
+        <li><label><input type="radio" name="q2" value="incorrect"> b) Porque es el tratamiento más económico</label></li>
+        <li><label><input type="radio" name="q2" value="correct"> c) Porque el tumor tiene una mutación específica que lo hace sensible a inhibidores de EGFR</label></li>
+        <li><label><input type="radio" name="q2" value="incorrect"> d) Porque el paciente lo prefiere</label></li>
+      </ul>
+      <div class="feedback" id="feedback2"></div>
+    </div>
+
+    <!-- Pregunta 3 -->
+    <div class="question">
+      <p>3. Si no se hubiera realizado el análisis genómico, ¿qué riesgo habría?</p>
+      <ul class="options">
+        <li><label><input type="radio" name="q3" value="correct"> a) Tratar con quimioterapia ineficaz, perdiendo tiempo valioso</label></li>
+        <li><label><input type="radio" name="q3" value="incorrect"> b) Que el paciente mejore más rápido</label></li>
+        <li><label><input type="radio" name="q3" value="incorrect"> c) Que el tumor desaparezca solo</label></li>
+        <li><label><input type="radio" name="q3" value="incorrect"> d) No hay riesgo, la quimioterapia siempre funciona</label></li>
+      </ul>
+      <div class="feedback" id="feedback3"></div>
+    </div>
+
+    <!-- Botones de verificar y repetir -->
+    <div style="text-align: center; margin: 30px 0;">
+      <button class="btn check-btn" onclick="checkAnswers()">✅ Verificar respuestas</button>
+      <button class="btn reset-btn" onclick="resetExercise()" style="display: none;" id="reset-btn">🔄 Repetir ejercicio</button>
+    </div>
+
+    <!-- Retroalimentación general -->
+    <div id="final-feedback" style="display: none; padding: 15px; border-radius: 8px; margin: 20px 0; font-weight: bold; text-align: center;"></div>
+
+    <!-- Clave de aprendizaje -->
     <h2>💡 Clave de aprendizaje</h2>
     <ul>
-      <li>✅ <strong>Medicina Basada en Evidencias (MBE):</strong> Ensayos clínicos tipo I demostraron que los inhibidores de EGFR mejoran la supervivencia progresión-libre en pacientes con mutación <em>EGFR</em>.</li>
-      <li>✅ <strong>Medicina de Precisión:</strong> El tratamiento se adapta al perfil molecular del tumor, no al tipo de cáncer en general.</li>
-      <li>✅ <strong>Impacto real:</strong> Este enfoque ha aumentado significativamente la supervivencia en subgrupos de pacientes con CPNM.</li>
+      <li>✅ <strong>MBE:</strong> Guías clínicas (como NCCN) recomiendan osimertinib como primera línea en <em>EGFR+</em>.</li>
+      <li>✅ <strong>Precisión:</strong> El tratamiento se adapta al perfil molecular del tumor.</li>
+      <li>✅ <strong>Impacto:</strong> Los pacientes con <em>EGFR+</em> tienen mayor supervivencia con inhibidores que con quimio.</li>
     </ul>
 
     <p style="font-style: italic; text-align: center; margin-top: 25px; color: #555;">
@@ -147,12 +222,54 @@
 
     <!-- Botón de imprimir -->
     <button class="print-btn" onclick="window.print()">
-      🖨️ Imprimir respuestas y caso clínico
+      🖨️ Imprimir ejercicio y respuestas
     </button>
   </div>
 
   <div class="footer">
-    Ejercicio interactivo – Biomedicina con enfoque en evidencia y precisión
+    Ejercicio interactivo – Biomedicina con retroalimentación
   </div>
-</body>
-</html>
+
+  <script>
+    // Verificar respuestas
+    function checkAnswers() {
+      const questions = ['q1', 'q2', 'q3'];
+      let allCorrect = true;
+
+      questions.forEach((q, index) => {
+        const selected = document.querySelector(`input[name="${q}"]:checked`);
+        const feedback = document.getElementById(`feedback${index + 1}`);
+
+        if (!selected) {
+          feedback.textContent = "⚠️ Por favor, selecciona una opción.";
+          feedback.className = "feedback incorrect";
+          feedback.style.display = "block";
+          allCorrect = false;
+        } else {
+          if (selected.value === "correct") {
+            feedback.textContent = "✅ ¡Correcto! Este tratamiento está respaldado por ensayos clínicos y es el estándar para tumores con mutación EGFR.";
+            feedback.className = "feedback correct";
+          } else {
+            feedback.textContent = "❌ Incorrecto. Revisa la clave de aprendizaje.";
+            feedback.className = "feedback incorrect";
+            allCorrect = false;
+          }
+          feedback.style.display = "block";
+        }
+      });
+
+      // Retroalimentación final
+      const finalFeedback = document.getElementById("final-feedback");
+      if (allCorrect) {
+        finalFeedback.textContent = "🎉 ¡Excelente! Has aplicado correctamente la medicina basada en evidencia y la medicina de precisión.";
+        finalFeedback.style.backgroundColor = "#d4edda";
+        finalFeedback.style.color = "#155724";
+      } else {
+        finalFeedback.textContent = "⚠️ Algunas respuestas son incorrectas. Usa la clave de aprendizaje para repasar y pulsa 'Repetir ejercicio'.";
+        finalFeedback.style.backgroundColor = "#f8d7da";
+        finalFeedback.style.color = "#721c24";
+      }
+      finalFeedback.style.display = "block";
+
+      // Mostrar botón de reinicio
+      document.getElementById("reset-btn").style.display = "inline
